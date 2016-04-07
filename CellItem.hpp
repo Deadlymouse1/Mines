@@ -25,6 +25,7 @@ protected:
 private:
     Cell *m_cell;
     QGraphicsSimpleTextItem *m_text;
+    QGraphicsItem *parent;
 
 };
 
