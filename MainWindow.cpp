@@ -25,8 +25,7 @@ MainWindow::MainWindow(QWidget *parent) :
     m_field = new Field();
     m_fieldItem = new QGraphicsRectItem();
     m_gameStateRect = new QGraphicsRectItem();
-    m_field->setSize(8, 8);
-    m_field->setNumberOfMines(10);
+
 
     QGLFormat f = QGLFormat::defaultFormat();
     f.setSampleBuffers(true);
@@ -45,15 +44,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->graphicsView->setViewport(new QGLWidget(f));
     ui->graphicsView->setScene(m_scene);
 
-    m_fieldItem->setRect(0, 0, m_field->width() * CellItem::cellSize + fieldBorderWidth * 2,
-                         m_field->height() * CellItem::cellSize + fieldBorderWidth * 2);
-
-    for (int y = 0; y < m_field->height(); ++y) {
-        for (int x = 0; x < m_field->width(); ++x) {
-            CellItem *newItem = new CellItem(m_field->cellAt(x, y), m_fieldItem);
-            newItem->setPos(x * CellItem::cellSize+ fieldBorderWidth, y * CellItem::cellSize+ fieldBorderWidth);
-        }
-    }
+    resizeField(8, 8);
+    m_field->setNumberOfMines(10);
     NewGame();
 
     connect(m_field, SIGNAL(numberOfFlagsChanged(int)), this, SLOT(onFieldNumberOfFlagsChanged(int)));
@@ -109,8 +101,50 @@ void MainWindow::onFieldStateChanged()
         m_gameStateRect->setVisible(false);
     }
 }
+void MainWindow::resizeField(int width, int height){
+    for (QGraphicsItem *cell : m_fieldItem->childItems()) {
+        delete cell;
+    }
+
+    m_field->setSize(width, height);
+    m_fieldItem->setRect(0, 0,
+                         width * CellItem::cellSize + fieldBorderWidth * 2,
+                         height * CellItem::cellSize + fieldBorderWidth * 2);
+    for (int y = 0; y < height; ++y) {
+        for (int x = 0; x < width; ++x) {
+            CellItem *newItem = new CellItem(m_field->cellAt(x, y), m_fieldItem);
+            newItem->setPos(x * CellItem::cellSize + fieldBorderWidth,
+                            y * CellItem::cellSize + fieldBorderWidth);
+        }
+
+    }
+}
 
 void MainWindow::on_actionExit_triggered()
 {
     close();
+}
+
+void MainWindow::on_actionBeginner_triggered()
+{
+    resizeField(8,8);
+    m_field->setNumberOfMines(10);
+    NewGame();
+    updateSceneScale();
+}
+
+void MainWindow::on_actionIntermediate_triggered()
+{
+    resizeField(16,16);
+    m_field->setNumberOfMines(40);
+    NewGame();
+    updateSceneScale();
+}
+
+void MainWindow::on_actionExpert_triggered()
+{
+    resizeField(16,40);
+    m_field->setNumberOfMines(99);
+    NewGame();
+    updateSceneScale();
 }

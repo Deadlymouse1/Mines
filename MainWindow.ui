@@ -57,7 +57,16 @@
     <addaction name="actionNew_Game"/>
     <addaction name="actionExit"/>
    </widget>
+   <widget class="QMenu" name="menuLEVELHARD">
+    <property name="title">
+     <string>LEVELHARD</string>
+    </property>
+    <addaction name="actionBeginner"/>
+    <addaction name="actionIntermediate"/>
+    <addaction name="actionExpert"/>
+   </widget>
    <addaction name="menuNew_game"/>
+   <addaction name="menuLEVELHARD"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -82,6 +91,21 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="actionBeginner">
+   <property name="text">
+    <string>Beginner</string>
+   </property>
+  </action>
+  <action name="actionIntermediate">
+   <property name="text">
+    <string>Intermediate</string>
+   </property>
+  </action>
+  <action name="actionExpert">
+   <property name="text">
+    <string>Expert</string>
    </property>
   </action>
  </widget>

@@ -19,6 +19,7 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     void NewGame();
+    void resizeField(int width, int height);
 
 protected:
     void resizeEvent(QResizeEvent *event);
@@ -32,6 +33,12 @@ private slots:
     void on_actionNew_Game_triggered();
     void onFieldStateChanged();
     void on_actionExit_triggered();
+
+    void on_actionBeginner_triggered();
+
+    void on_actionIntermediate_triggered();
+
+    void on_actionExpert_triggered();
 
 private:
     Ui::MainWindow *ui;
