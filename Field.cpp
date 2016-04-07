@@ -107,7 +107,7 @@ void Field::lose()
 }
 void Field::onCellOpened(int x, int y)
 {
-    m_numberOfOpenedCells++;
+
     if (!isGenerated()) {
         generate(x, y);
         setState(StateStarted);
@@ -116,10 +116,10 @@ void Field::onCellOpened(int x, int y)
     {
         lose();
     }
-    else if(m_numberOfOpenedCells == m_cells.count() - m_numberOfMines){
+    if(m_numberOfOpenedCells == m_cells.count() - m_numberOfMines){
         win();
     }
-
+    m_numberOfOpenedCells++;
 }
 
 void Field::onCellMarkChanged(){
