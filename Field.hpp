@@ -5,6 +5,7 @@
 #include <QObject>
 class Cell;
 
+
 class Field: public QObject
 {
     Q_OBJECT

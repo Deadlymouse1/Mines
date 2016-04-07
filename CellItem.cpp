@@ -6,10 +6,10 @@
 
 #include "Cell.hpp"
 
-const int cellSize = 32;
+const int CellItem::cellSize = 32;
 
-CellItem::CellItem(Cell *cell) :
-    QGraphicsItem()
+CellItem::CellItem(Cell *cell, QGraphicsItem *parent) :
+    QGraphicsItem(parent)
 {
     m_cell = cell;
     m_text = new QGraphicsSimpleTextItem(this);
@@ -17,6 +17,7 @@ CellItem::CellItem(Cell *cell) :
     QFont f = m_text->font();
     f.setPixelSize(cellSize - 4);
     m_text->setFont(f);
+
 
     setPos(m_cell->x() * cellSize, m_cell->y() * cellSize);
 

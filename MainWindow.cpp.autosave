@@ -47,12 +47,11 @@ MainWindow::MainWindow(QWidget *parent) :
             newItem->setPos(x * CellItem::cellSize, y * CellItem::cellSize);
         }
     }
-    m_scene->addItem(m_fieldItem);
     NewGame();
 
     connect(m_field, SIGNAL(numberOfFlagsChanged(int)), this, SLOT(onFieldNumberOfFlagsChanged(int)));
     connect(m_field, SIGNAL(changeState(State)), this, SLOT(onFieldStateChanged()));
-
+    m_scene->addItem(m_fieldItem);
     //m_field->generate(x,y);
 }
 
