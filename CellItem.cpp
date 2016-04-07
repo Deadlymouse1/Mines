@@ -17,11 +17,6 @@ CellItem::CellItem(Cell *cell, QGraphicsItem *parent) :
     QFont f = m_text->font();
     f.setPixelSize(cellSize - 4);
     m_text->setFont(f);
-
-
-    setPos(m_cell->x() * cellSize, m_cell->y() * cellSize);
-
-
 }
 
 QRectF CellItem::boundingRect() const

@@ -11,6 +11,11 @@ void Field::setSize(int width, int height)
     m_width = width;
     m_height = height;
 
+    for (Cell *cell : m_cells) {
+        delete cell;
+    }
+    m_cells.clear();
+
     for (int y = 0; y < height; ++y) {
         for (int x = 0; x < width; ++x) {
             Cell *cell = new Cell(x, y);
