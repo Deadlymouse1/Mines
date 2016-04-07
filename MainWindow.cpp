@@ -32,15 +32,18 @@ MainWindow::MainWindow(QWidget *parent) :
     m_scene->addItem(m_gameStateText);
 
 
-    ui->graphicsView->setViewport(new QGLWidget(f));
-    ui->graphicsView->setScene(m_scene);
-
     m_fieldItem->setRect(0, 0, m_field->width() * CellItem::cellSize + fieldBorderWidth * 2,
                              m_field->height() * CellItem::cellSize + fieldBorderWidth * 2);
 
+    ui->graphicsView->setViewport(new QGLWidget(f));
+    ui->graphicsView->setScene(m_scene);
+
+
+
     for (int y = 0; y < m_field->height(); ++y) {
         for (int x = 0; x < m_field->width(); ++x) {
-            m_scene->addItem(new CellItem(m_field->cellAt(x, y)));
+            CellItem *newItem = new CellItem(m_field->cellAt(x, y), m_fieldItem);
+            newItem->setPos(x * CellItem::cellSize, y * CellItem::cellSize);
         }
     }
     NewGame();
