@@ -143,7 +143,7 @@ void MainWindow::on_actionIntermediate_triggered()
 
 void MainWindow::on_actionExpert_triggered()
 {
-    resizeField(16,40);
+    resizeField(40,16);
     m_field->setNumberOfMines(99);
     NewGame();
     updateSceneScale();

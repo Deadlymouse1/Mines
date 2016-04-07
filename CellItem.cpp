@@ -34,10 +34,16 @@ void CellItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
     static const int border = 4;
     if (m_cell->isOpen())
     {
-        if (m_cell->haveMine())
-        {
+        if (m_cell->haveMine()){
+            if(m_cell->isExploded() == true){
+                painter->fillRect(border, border, cellSize - border * 2, cellSize - border * 2, Qt::red);
+
+            }
+            else{
+                painter->fillRect(border, border, cellSize - border * 2, cellSize - border * 2, Qt::green);
+
+            }
             m_text->setText("+");
-            painter->fillRect(border, border, cellSize - border * 2, cellSize - border * 2, Qt::red);
 
         }
 

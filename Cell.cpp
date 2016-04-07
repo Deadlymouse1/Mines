@@ -10,6 +10,7 @@ Cell::Cell(int x, int y):QObject()
     m_open = false;
     //m_haveMark = false;
     m_mark = MarkQuestioned;
+    m_exploded = false;
 
 }
 
@@ -24,6 +25,11 @@ int Cell::minesAround() const
     }
 
     return mines;
+}
+
+void Cell::reveal()
+{
+    m_open = true;
 }
 
 void Cell::setHaveMine(bool haveMine)
@@ -49,6 +55,10 @@ void Cell::open()
         {
             cell->open();
         }
+    }
+    if(haveMine() == true){
+
+        m_exploded = true;
     }
 
 }

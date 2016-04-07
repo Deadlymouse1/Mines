@@ -23,8 +23,13 @@ public:
 
     bool haveMark() const {return m_haveMark;}
     bool haveMine() const { return m_haveMine; }
+
+    void reveal();
+    bool isExploded() const {return m_exploded;}
+
     void setNeighbors(const QVector<Cell*> &neighbors);
     void setHaveMine(bool haveMine);
+
 
     bool isOpen() const { return m_open; }
     void open();
@@ -51,7 +56,7 @@ private:
     bool m_haveMark;
     bool m_haveMine;
     bool m_open;
-
+    bool m_exploded;
 };
 
 #endif // CELL_HPP

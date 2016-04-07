@@ -100,13 +100,16 @@ void Field::prepare()
 
 void Field::win()
 {
+    for (int i = 0; i < m_cells.size(); i++){
+        m_cells[i]->reveal();
+    }
     setState(StateEnded);
     qDebug() <<"WIN!!";
 }
 void Field::lose()
 {
     for (int i = 0; i < m_cells.size(); i++) {
-        m_cells[i]->open();
+        m_cells[i]->reveal();
     }
     setState(StateEnded);
 }
