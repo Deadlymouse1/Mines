@@ -21,6 +21,8 @@ public:
     void NewGame();
     void resizeField(int width, int height);
 
+    Field *field() const { return m_field; }
+
 protected:
     void resizeEvent(QResizeEvent *event);
 

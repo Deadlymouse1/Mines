@@ -9,7 +9,11 @@ Field::Field(): QObject()
 void Field::setSize(int width, int height)
 {
     m_width = width;
-    m_height = height;
+    emit widthChanged(width);
+
+    m_height = height; 
+    emit heightChanged(height);
+
 
     for (Cell *cell : m_cells) {
         delete cell;

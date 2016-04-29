@@ -25,3 +25,6 @@ HEADERS  += MainWindow.hpp \
     CellItem.hpp
 
 FORMS    += MainWindow.ui
+
+RESOURCES += \
+    resources.qrc
