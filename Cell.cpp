@@ -8,8 +8,7 @@ Cell::Cell(int x, int y):QObject()
     m_y = y;
     m_haveMine = false;
     m_open = false;
-    //m_haveMark = false;
-    m_mark = MarkQuestioned;
+    m_haveMark = false;
     m_exploded = false;
 
 }
@@ -71,8 +70,8 @@ QVector<Cell *> Cell::getNeighbors() const
 void Cell::reset(){
     m_haveMine = false;
     m_open = false;
-    m_haveMark = true;
-    m_mark = MarkQuestioned;
+    m_haveMark = false;
+    m_mark = MarkNothing;
 
 
 }
@@ -80,38 +79,32 @@ void Cell::toggleMark(){
     switch (m_mark) {
     case MarkNothing:
         m_mark = MarkFlagged;
-        //m_haveMark = true;
+        m_haveMark = true;
         emit(markChanged(Mark()));
         break;
     case MarkFlagged:
         m_mark = MarkQuestioned;
-        //m_haveMark = false;
+        m_haveMark = false;
         emit(markChanged(Mark()));
         break;
     case MarkQuestioned:
         m_mark = MarkNothing;
         emit(markChanged(Mark()));
         break;
-    /*if (m_mark == 2) {
-        m_mark = 0;
-    } else {
-        ++m_mark;
-        if(m_mark == 1){
-            m_haveMark = false;
-        }
-        else{
-            m_haveMark = true;
-        }*/
-
-
-
     }
 }
 void Cell::tryToOpenAround(){
-    for (Cell *cell : getNeighbors()){
-        if(cell->haveMark() == true ){
-            cell->open();
-
+    int flag = 0;
+    for (Cell *cell : getNeighbors()) {
+        if (cell->haveMark()) {
+            ++flag;
+        }
+    }
+    if(flag == minesAround()){
+        for (Cell *cell : getNeighbors()){
+            if(cell->haveMark() == false ){
+                cell->open();
+            }
         }
     }
 

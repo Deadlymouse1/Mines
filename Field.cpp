@@ -133,7 +133,7 @@ void Field::onCellOpened(int x, int y)
 void Field::onCellMarkChanged(){
     int COUNT = 0;
     for (int i = 0; i < m_cells.size(); i++){
-        if(m_cells[i]->mark() == Cell::MarkNothing){
+        if(m_cells[i]->mark() == Cell::MarkFlagged){
             COUNT++;
         }
     }

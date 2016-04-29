@@ -38,12 +38,15 @@ void CellItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
             if(m_cell->isExploded() == true){
                 painter->fillRect(border, border, cellSize - border * 2, cellSize - border * 2, Qt::red);
 
+
             }
             else{
                 painter->fillRect(border, border, cellSize - border * 2, cellSize - border * 2, Qt::green);
 
+
             }
             m_text->setText("+");
+             m_text->setPos((cellSize - m_text->boundingRect().width()) / 2, (cellSize - m_text->boundingRect().height()) / 2);
 
         }
 
@@ -51,6 +54,7 @@ void CellItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
             {
 
                 m_text->setText(QString::number(m_cell->minesAround()));
+                 m_text->setPos((cellSize - m_text->boundingRect().width()) / 2, (cellSize - m_text->boundingRect().height()) / 2);
             }
             else{ m_text->setText(" ");}
         }
@@ -58,14 +62,15 @@ void CellItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
     else{
 
         painter->fillRect(border, border, cellSize - border * 2, cellSize - border * 2, Qt::yellow);
+         m_text->setPos((cellSize - m_text->boundingRect().width()) / 2, (cellSize - m_text->boundingRect().height()) / 2);
         switch (m_cell->mark()) {
-        case Cell::MarkNothing:
+        case Cell::MarkFlagged:
             m_text->setText("!");
             break;
-        case Cell::MarkFlagged:
+        case Cell::MarkQuestioned:
             m_text->setText("?");
             break;
-        case Cell::MarkQuestioned:
+        case Cell::MarkNothing:
             m_text->setText(" ");
             break;
         }

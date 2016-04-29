@@ -9,9 +9,9 @@ class Cell: public QObject
     Q_OBJECT
 public:
     enum Mark {
-        MarkNothing,
         MarkFlagged,
-        MarkQuestioned
+        MarkQuestioned,
+        MarkNothing,
     };
 
     Cell(int x, int y);
