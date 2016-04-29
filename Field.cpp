@@ -118,7 +118,6 @@ void Field::onCellOpened(int x, int y)
 
     if (!isGenerated()) {
         generate(x, y);
-        setState(StateStarted);
     }
     if(cellAt(x,y)->haveMine() == true)
     {

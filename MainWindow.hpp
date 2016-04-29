@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 #include <QGraphicsRectItem>
 #include <QMainWindow>
-//class QGraphicsRectItem;
+class QGraphicsRectItem;
 namespace Ui {
 class MainWindow;
 }

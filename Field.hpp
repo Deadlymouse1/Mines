@@ -9,6 +9,8 @@ class Cell;
 class Field: public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(int width READ width NOTIFY widthChanged)
+    Q_PROPERTY(int height READ height NOTIFY heightChanged)
 public:
     enum State {
         StateIdle,
@@ -36,6 +38,9 @@ public:
 signals:
     void numberOfFlagsChanged(int);
     void changeState(State NewState);
+
+    void widthChanged(int newWidth);
+    void heightChanged(int newHeight);
 
 protected slots:
     void onCellOpened(int x, int y);

@@ -30,7 +30,7 @@ void CellItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
     painter->setRenderHint(QPainter::HighQualityAntialiasing);
 
     painter->drawRect(0, 0, cellSize, cellSize);
-    m_text->setPos((cellSize - m_text->boundingRect().width()) / 2, (cellSize - m_text->boundingRect().height()) / 2);
+
     static const int border = 4;
     if (m_cell->isOpen())
     {
